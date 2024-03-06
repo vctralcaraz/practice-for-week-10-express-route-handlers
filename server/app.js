@@ -40,6 +40,22 @@ app.get('/artists', (req, res) => {
   res.send(artists);
 });
 
+app.get('/artists/latest', (req, res) => {
+  const latest = getLatestArtist();
+
+  res.status(200);
+  res.setHeader('Content-Type', 'application/json');
+  res.send(latest);
+});
+
+app.get('/artists/latest/albums', (req, res) => {
+  const latestAlbums = getAlbumsForLatestArtist();
+
+  res.status(200);
+  res.setHeader('Content-Type', 'application/json');
+  res.send(latestAlbums);
+});
+
 app.post('/artists', (req, res) => {
   const newArtist = addArtist(req.body);
 
